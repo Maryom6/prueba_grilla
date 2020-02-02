@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <style>
+     #visorArchivo { 
+    width: 280px;
+    height: 125px;
+    border: 1px solid #ccc;
+    margin: auto;
+    background-color: #ccc;
+     }
+
+    table {
+        border: 4px solid black;
+        width: 100%;
+        display: grid;
+        justify-content: center;
+        align-content: flex-end;
+    }
+
+   /* table thead {
+         border: 1px solid black;
+     }*/
+
+    table tbody {
+         border: 1px solid red;
+     }
+
+    tr th {
+         border-left: 2px solid green;
+     }
+
+    tr td {
+         border-right: 2px solid orange;
+     }
+
+
+ </style>
+</head>
+<body>
+        
+    <table>
+        <thead> 
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+            <tr>
+                <td>Maryoris</td>
+                <td><span>Es más fácil juzgar el talento de un hombre por sus preguntas que por sus respuestas.</span></td>
+                <td>Violeta</td>
+            </tr>
+            <tr>
+                <td>Es más fácil juzgar el talento de un hombre por sus preguntas que por sus respuestas.</td>
+                <td><span>Es más fácil juzgar el talento de un hombre .</span></td>
+                <td><span>rosado</span></td>
+            </tr>
+        <tbody>
+
+        </tbody>
+    </table>
+
+        
+
+   
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function validarExt()
+    {
+        var archivoInput = document.getElementById('archivoInput');
+        var archivoRuta = archivoInput.value;
+        var extPermitidas = /(.pdf|.jpg|.txt|.xls|.png)$/i;
+        if(!extPermitidas.exec(archivoRuta)){
+            alert('Asegurese de haber seleccionado un PDF');
+            archivoInput.value = '';
+            return false;
+        }
+    
+        else
+        {
+            //PRevio del PDF
+            if (archivoInput.files && archivoInput.files[0]) 
+            {
+                var visor = new FileReader();
+                visor.onload = function(e) 
+                {
+                    document.getElementById('visorArchivo').innerHTML = 
+                    '<embed src="'+e.target.result+'" width="240" height="125" />';
+                };
+                
+                visor.readAsDataURL(archivoInput.files[0]);
+            }
+        }
+        
+    }
+    </script>
+   
+
+
+
